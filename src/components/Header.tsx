@@ -94,7 +94,9 @@ function Header() {
           <Link href="/wishlist">
             <Heart />
           </Link>
-          <ShoppingCart />
+          <Link href="/cart">
+            <ShoppingCart />
+          </Link>
         </div>
       </div>
     </div>

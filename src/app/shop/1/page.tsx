@@ -1,5 +1,7 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useRef } from "react";
 import HeroImage from "@/assets/image 10.png";
 import FirstImage from "@/assets/image 11.png";
 import SecondImage from "@/assets/image 12.png";
@@ -7,8 +9,18 @@ import { Ratings } from "@/components/ui/ratings";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import useLocalStorage from "@/lib/useLocalStorage";
 
 function Page() {
+  const [_, setCart] = useLocalStorage<any>("cart", []);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const addToCart = () => {
+    setCart((prevCart: any) => {
+      return [...prevCart, { id: 1, quantity: inputRef.current?.value || 1 }];
+    });
+  };
+
   return (
     <div className="p-5">
       <div className="grid grid-cols-2 gap-10 mb-10">
@@ -56,8 +68,16 @@ function Page() {
             </div>
           </div>
           <div className="flex py-4 space-x-4">
-            <Input type="number" className="w-36" />
-            <Button variant="outline">Add To Cart</Button>
+            <Input
+              type="number"
+              className="w-36"
+              min={1}
+              defaultValue={1}
+              ref={inputRef}
+            />
+            <Button variant="outline" onClick={addToCart}>
+              Add To Cart
+            </Button>
             <Button variant="outline">+ Compare</Button>
           </div>
           <Separator />
