@@ -27,6 +27,8 @@ import {
 } from "lucide-react";
 import { Separator } from "@radix-ui/react-separator";
 import Highlight from "@/components/Highlight";
+import Product from "@/components/Product";
+import Link from "next/link";
 
 function Page() {
   return (
@@ -60,11 +62,19 @@ function Page() {
           </div>
         </div>
       </div>
-      <div className="h-screen flex items-center justify-center">
-        <div className="flex flex-col items-center">
-          <PackageSearch size={64} />
-          <p>Currently there are no products to be shown</p>
-        </div>
+      <div className="h-screen grid grid-cols-6">
+        <Link href="/shop/1">
+          <Product
+            data={{
+              by: "Cloei",
+              price: 2500000,
+              discountedPrice: 0,
+              discount: 0,
+              isNew: false,
+            }}
+            product="ZOOM75 V2"
+          />
+        </Link>
       </div>
       <Highlight />
     </div>

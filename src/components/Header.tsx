@@ -90,7 +90,6 @@ function Header() {
           <Link href="/contact">Contact</Link>
         </div>
         <div className="space-x-8 flex">
-          <User />
           <Search />
           <Link href="/wishlist">
             <Heart />
